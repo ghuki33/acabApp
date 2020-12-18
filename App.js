@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 // Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { View, Text } from "react-native-elements";
+import { Text } from "react-native-elements";
 
 // Components
 import CreateDataScreen from "./screens/CreateDataScreen";
@@ -49,11 +49,10 @@ function MyStack() {
 export default function App() {
   return (
     <NavigationContainer>
-      <MyStack style={styles.container}/>
-    <Text
-    style={styles.copyright}>
-      &copy; Zanetti Apartamentos | 2020 - 2021
-    </Text>
+      <MyStack style={styles.container} />
+      <Text style={styles.copyright}>
+        &copy; Zanetti Apartamentos | 2020 - 2021
+      </Text>
     </NavigationContainer>
   );
 }
@@ -66,6 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   copyright: {
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });

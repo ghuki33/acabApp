@@ -35,12 +35,10 @@ const DataDetailScreen = (props) => {
   };
 
   const deleteData = async () => {
-    setLoading(true)
-    const dbRef = firebase.db
-      .collection("data")
-      .doc(props.route.params.userId);
+    setLoading(true);
+    const dbRef = firebase.db.collection("data").doc(props.route.params.userId);
     await dbRef.delete();
-    setLoading(false)
+    setLoading(false);
     props.navigation.navigate("DataList");
   };
 
@@ -50,7 +48,7 @@ const DataDetailScreen = (props) => {
       "¿Estas seguro?",
       [
         { text: "Si", onPress: () => deleteData() },
-        { text: "No", onPress: () => console.log("Cancelado") },
+        { text: "No", onPress: () => console.log("Elimination canceled") },
       ],
       {
         cancelable: true,

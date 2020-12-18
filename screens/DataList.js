@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, StyleSheet } from "react-native";
-import { ListItem, Avatar, Text } from "react-native-elements";
+import { Button, Text, StyleSheet, Alert } from "react-native";
+import { ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
@@ -27,18 +27,25 @@ const DataScreen = (props) => {
 
   // Export function
   const exportData = () => {
-    var exportData = {
-      Key: data.id,
-      Apartamento: data.apto,
-      Actividad: data.activity,
-      Avance: data.progress,
-    };
-    var workSheet = XLSX.utils.json_to_sheet(exportData); //create a work sheet
+    var workSheet = XLSX.utils.json_to_sheet(data); //create a work sheet
     var workBook = XLSX.utils.book_new(); //create a new book
     XLSX.utils.book_append_sheet(workBook, workSheet, "AcabApp DataBase"); //append sheet into the book
     XLSX.writeFile(workBook, "AcabApp.xlsx"); //write new file
   };
 
+  const alertExportData = () => {
+    Alert.alert(
+      "Crear archivo Excel",
+      "¿Estás seguro?",
+      [
+        { text: "Si", onPress: () => exportData },
+        { text: "No", onPress: () => console.log("Exportation canceled") },
+      ],
+      {
+        cancelable: true,
+      }
+    );
+  };
   return (
     <ScrollView>
       {/* BUTTOMS       */}
@@ -75,11 +82,14 @@ const DataScreen = (props) => {
             <ListItem.Content>
               {/* Generate unorden data */}
               <ListItem.Title>
-                <strong>Apto:</strong> {word.apto}
+                <Text style={styles.negrita}>Apto: </Text>
+                {word.apto}
               </ListItem.Title>
               <ListItem.Subtitle>
-                <strong>Actividad:</strong> {word.activity} <br />
-                <strong>Avance:</strong> {word.progress * 100}%
+                <Text style={styles.negrita}>Actividad: </Text>
+                {word.activity}{" "}
+                <Text style={styles.negrita}>{"\n"}Avance: </Text>
+                {word.progress * 100}%
               </ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
@@ -88,6 +98,12 @@ const DataScreen = (props) => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  negrita: { fontWeight: "bold" },
+  cursiva: { fontStyle: "italic" },
+  subrayado: { textDecorationLine: "underline" },
+});
 
 //export
 
