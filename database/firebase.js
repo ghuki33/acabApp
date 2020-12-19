@@ -3,13 +3,13 @@ import "firebase/firestore";
 
 //Change this to own Firebase Config
 const firebaseConfig = {
-  apiKey: "AIzaSyCO1YqLUk-nlpP3lXruaEY3x0XKJHtWqaM",
-  authDomain: "acabapp-31bd5.firebaseapp.com",
-  projectId: "acabapp-31bd5",
-  storageBucket: "acabapp-31bd5.appspot.com",
-  messagingSenderId: "780165440925",
-  appId: "1:780165440925:web:7e04c6d4910ad2d6e9fb74",
-  measurementId: "G-W9GLPS9DBG",
+  apiKey: "AIzaSyCYuGTDYS2NtGeRMZBylpIPz2-FRml8DEA",
+  authDomain: "acabaap.firebaseapp.com",
+  projectId: "acabaap",
+  storageBucket: "acabaap.appspot.com",
+  messagingSenderId: "384166023517",
+  appId: "1:384166023517:web:ef1ad3bfb20b88d54798b4",
+  measurementId: "G-J1MFGGQS00",
 };
 
 //Don't touch if you don't know how to do.

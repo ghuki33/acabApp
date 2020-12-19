@@ -32,7 +32,7 @@ const AddDataScreen = (props) => {
           activity: state.activity,
           progress: state.progress / 100,
         });
-        console.log("Datos agregados");
+        alert("Datos guardados correctamente");
         props.navigation.navigate("DataList");
       } catch (error) {
         console.log(error);

@@ -61,7 +61,7 @@ const DataDetailScreen = (props) => {
     await userRef.set({
       apto: word.apto,
       activity: word.activity,
-      progress: word.progress,
+      progress: word.progress / 100,
     });
     setData(initialState);
     props.navigation.navigate("DataList");

@@ -3,6 +3,9 @@ import { Button, Text, StyleSheet, Alert } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
+
 import firebase from "../database/firebase";
 import XLSX from "xlsx";
 
@@ -26,11 +29,33 @@ const DataScreen = (props) => {
   });
 
   // Export function
-  const exportData = () => {
-    var workSheet = XLSX.utils.json_to_sheet(data); //create a work sheet
+  const exportData = async () => {
+    var dataList = [];
+    data.forEach((element) => {
+      dataList.push({
+        ID: element.id,
+        Apartamento: element.apto,
+        Actividad: element.activity,
+        Avance: element.progress,
+      });
+    });
+
+    var workSheet = XLSX.utils.json_to_sheet(dataList); //create a work sheet
     var workBook = XLSX.utils.book_new(); //create a new book
     XLSX.utils.book_append_sheet(workBook, workSheet, "AcabApp DataBase"); //append sheet into the book
-    XLSX.writeFile(workBook, "AcabApp.xlsx"); //write new file
+    const wbout = XLSX.write(workBook, { type: "base64", bookType: "xlsx" }); //write new file
+    const uri = FileSystem.cacheDirectory + "acabApp.xlsx";
+
+    await FileSystem.writeAsStringAsync(uri, wbout, {
+      encoding: FileSystem.EncodingType.Base64,
+    });
+
+    await Sharing.shareAsync(uri, {
+      mimeType:
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      dialogTitle: "AcabApp Data Base",
+      UTI: "com.microsoft.excel.xlsx",
+    });
   };
 
   const alertExportData = () => {
@@ -38,7 +63,7 @@ const DataScreen = (props) => {
       "Crear archivo Excel",
       "¿Estás seguro?",
       [
-        { text: "Si", onPress: () => exportData },
+        { text: "Si", onPress: () => exportData() },
         { text: "No", onPress: () => console.log("Exportation canceled") },
       ],
       {
@@ -55,7 +80,7 @@ const DataScreen = (props) => {
         color="#7890D1"
       />
       <Button
-        onPress={() => exportData()}
+        onPress={() => alertExportData()}
         title="Exportar datos"
         color="#0507B2"
       />

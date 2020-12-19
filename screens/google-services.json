@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "11096736874",
+    "firebase_url": "https://acabapp-61612-default-rtdb.firebaseio.com",
+    "project_id": "acabapp-61612",
+    "storage_bucket": "acabapp-61612.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11096736874:android:18e56c6203c5b3221f3613",
+        "android_client_info": {
+          "package_name": "com.zanetti.acabapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11096736874-fipf54h6j8erp3qgkdrg21l0m7r2f3ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADgqF7QdX4tV4Bf4s9oIxd_bcbkigFhpk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11096736874-fipf54h6j8erp3qgkdrg21l0m7r2f3ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
